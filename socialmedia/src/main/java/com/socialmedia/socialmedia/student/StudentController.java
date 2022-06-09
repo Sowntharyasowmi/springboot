@@ -37,4 +37,17 @@ public class StudentController {
         }
         studentsList=studentsList1;
     }
+    @PutMapping("/students/{id}")
+    public Students updateStudents(@RequestBody Students students,@PathVariable ("id") Integer id){
+        Students response=null;
+        for (Students students1 : studentsList){
+            if(students1.getId()==(id)){
+                students1.setName(students.getName());
+                students1.setSubject(students.getSubject());
+                response=students1;
+                break;
+            }
+        }
+        return response;
+    }
 }
